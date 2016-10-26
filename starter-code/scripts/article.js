@@ -1,4 +1,4 @@
-var articles = [];
+var allArticles = [];
 
 function Article (opts) {
   this.author = opts.author;
@@ -10,8 +10,7 @@ function Article (opts) {
 }
 
 Article.prototype.toHtml = function() {
-  var $newArticle = $('article.template').clone();
-  $newArticle.removeClass('template');
+  var $newArticle = $('article.template').clone().removeClass('template');
 
   $newArticle.attr('data-category', this.category);
   // TODO: Use jQuery to also add the author name as a data-attribute of the newly cloned article.
@@ -27,14 +26,14 @@ Article.prototype.toHtml = function() {
   return $newArticle;
 };
 
-ourLocalData.sort(function(a,b) {
+sourceData.sort(function(a,b) {
   return (new Date(b.publishedOn)) - (new Date(a.publishedOn));
 });
 
-ourLocalData.forEach(function(ele) {
-  articles.push(new Article(ele));
+sourceData.forEach(function(ele) {
+  allArticles.push(new Article(ele));
 });
 
-articles.forEach(function(a){
+allArticles.forEach(function(a){
   $('#articles').append(a.toHtml());
 });

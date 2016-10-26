@@ -1,4 +1,4 @@
-var ourLocalData = [
+var sourceData = [
   {
     title:       'Bacon Ipsum',
     category:    'food',
