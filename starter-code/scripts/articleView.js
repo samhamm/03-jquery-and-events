@@ -26,10 +26,12 @@ articleView.handleAuthorFilter = function() {
             those articles that match the value, and then fade them in.
         */
       $('article').hide();
-      $('article').filter(this).fadeIn();
+      $('#about').hide();
+      var $selectedAuthor = ($(this).val());
+
+      $('article[data-author="' + $selectedAuthor + '"]').fadeIn();
     } else {
-    /* Otherwise, we should:
-        1. Show all the articles except the template */
+      $('article').not('.template');
     }
     $('#category-filter').val('');
   });
@@ -69,3 +71,4 @@ articleView.setTeasers = function() {
 
 // TODO: Invoke all of the above functions (I mean, methods!):
 articleView.populateFilters();
+articleView.handleAuthorFilter();
