@@ -38,7 +38,7 @@ articleView.handleAuthorFilter = function() {
 };
 
 articleView.handleCategoryFilter = function() {
-  /* TODO: Just like we do for #author-filter above, we should also handle
+  /* DONE: Just like we do for #author-filter above, we should also handle
   change events on the #category-filter element. Be sure to reset the
   #author-filter while you're at it! */
   $('#category-filter').on('change', function() {
@@ -57,14 +57,25 @@ articleView.handleCategoryFilter = function() {
 };
 
 articleView.handleMainNav = function () {
-  $('.main-nav').on('click', '.tab', function() {
-    /* TODO:
+  $('.main-nav').on('click', '.tab', function(e) {
+    /* DONE:
       1. Hide all of the .tab-content sections
       2. Fade in the single .tab-content section that is
         associated with the .tab element's data-content attribute.
     */
+    e.preventDefault();
+    $('.tab-content').hide();
+
+    var currentTabContent = $(this).attr('data-content');
+
+    if (currentTabContent === 'articles') {
+      $('#articles').fadeIn();
+    }
+    if (currentTabContent === 'about') {
+      $('#about').fadeIn();
+    }
   });
-  $('.main-nav .tab:first').click();
+  // $('.main-nav .tab:first').click();
 };
 
 articleView.setTeasers = function() {
@@ -75,7 +86,7 @@ articleView.setTeasers = function() {
     1. Prevent the default action of a link.
     2. Reveal everything in that particular article now.
     3. Hide that read-on link!
-
+    
     // STRETCH GOAl!: change the 'Read On' link to 'Show Less'
   */
 };
@@ -86,5 +97,5 @@ articleView.setTeasers = function() {
 articleView.populateFilters();
 articleView.handleAuthorFilter();
 articleView.handleCategoryFilter();
-// articleView.handleMainNav();
+articleView.handleMainNav();
 // articleView.setTeasers();
